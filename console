@@ -1,0 +1,14 @@
+<?php
+
+require_once __DIR__.'/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use App\Service\ServiceContainer;
+use App\Command\LoadUsersCommand;
+
+$app = new Application();
+
+$serviceContainer = new ServiceContainer();
+$app->add(new LoadUsersCommand(null, $serviceContainer->get('user-factory')));
+
+$app->run();
